@@ -34,6 +34,11 @@ footer .card-footer {
     border: 1px solid var(--secondary-color);
 }
 
+/* JG */
+footer .card-footer-date { 
+    display: none;
+}
+
 footer .card-footer a {
     color: var(--text-link-color) !important;
     border-color: var(--primary-color) !important;
