@@ -37,7 +37,31 @@
                         <img src="{{ .Site.Params.hero.image }}"
                             class="img-thumbnail mx-auto{{ if .Site.Params.hero.roundImage }} rounded-circle{{ end }}"
                             alt=""
+                            id="hero-image-carousel"
                         >
+
+                        <script>
+                            const images = [
+                            {{ range .Site.Params.hero.imageswitch.images }}
+                                "{{ .image }}",
+                            {{ end }}
+                            ];
+
+
+                            document.addEventListener("DOMContentLoaded", function () {
+
+                                const img = document.getElementById('hero-image-carousel');
+                                const interval = {{ .Site.Params.hero.imageswitch.interval | default 3000 }}; // Interval in milliseconds
+
+                                let currentIndex = 0;
+                                function changeImage() {
+                                    currentIndex = (currentIndex + 1) % images.length;
+                                    img.src = images[currentIndex];
+                                }
+
+                                setInterval(changeImage, interval);
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
