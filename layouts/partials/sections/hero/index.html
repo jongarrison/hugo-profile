@@ -53,9 +53,16 @@
                                 const img = document.getElementById('hero-image-carousel');
                                 const interval = {{ .Site.Params.hero.imageswitch.interval | default 3000 }}; // Interval in milliseconds
 
-                                let currentIndex = 0;
+                                // Start with a random image
+                                let currentIndex = Math.floor(Math.random() * images.length);
+                                img.src = images[currentIndex];
+
                                 function changeImage() {
-                                    currentIndex = (currentIndex + 1) % images.length;
+                                    let newIndex;
+                                    do {
+                                        newIndex = Math.floor(Math.random() * images.length);
+                                    } while (newIndex === currentIndex && images.length > 1);
+                                    currentIndex = newIndex;
                                     img.src = images[currentIndex];
                                 }
 
